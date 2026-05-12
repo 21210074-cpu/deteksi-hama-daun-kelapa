@@ -1,0 +1,26 @@
+{% extends "base.html" %} {% block title %}Deteksi | KelapaCare{% endblock %} {%
+block content %}
+<section class="section container">
+  <h2>Deteksi Penyakit Daun Kelapa</h2>
+  <p class="muted">
+    Unggah foto daun (jpg/png). Pastikan area penyakit terlihat jelas.
+  </p>
+
+  <form
+    action="{{ url_for('detect') }}"
+    method="post"
+    enctype="multipart/form-data"
+    class="upload-form"
+  >
+    <label class="file-box">
+      <input type="file" name="file" accept="image/*" required />
+      <span>Pilih file atau seret di sini</span>
+    </label>
+
+    <div class="form-actions">
+      <button class="btn btn-primary" type="submit">Deteksi Sekarang</button>
+      <a class="btn btn-ghost" href="{{ url_for('history_view') }}">Riwayat</a>
+    </div>
+  </form>
+</section>
+{% endblock %}
