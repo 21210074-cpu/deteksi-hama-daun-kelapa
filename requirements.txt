@@ -1,7 +1,8 @@
 flask
 werkzeug
-tensorflow
+tensorflow==2.12.0
 numpy
 reportlab
 Pillow
 gunicorn
+h5py
