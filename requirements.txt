@@ -1,6 +1,6 @@
 flask
 werkzeug
-tensorflow==2.12.0
+tensorflow==2.21.0
 numpy
 reportlab
 Pillow
