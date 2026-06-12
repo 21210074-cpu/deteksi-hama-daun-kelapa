@@ -24,7 +24,14 @@ app.config['HISTORY_FILE'] = 'history.json'
 os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 
 # ================= LOAD MODEL =================
-model = load_model('model/mobilenetv2_model.h5')
+from tensorflow.keras.layers import DepthwiseConv2D as OriginalDepthwiseConv2D
+
+class FixedDepthwiseConv2D(OriginalDepthwiseConv2D):
+    def __init__(self, *args, **kwargs):
+        kwargs.pop('groups', None)
+        super().__init__(*args, **kwargs)
+
+model = load_model('model/mobilenetv2_model.h5', custom_objects={'DepthwiseConv2D': FixedDepthwiseConv2D})
 
 CLASS_NAMES = ['daun_kering', 'daun_menguning', 'layu_daun', 'ulat_api']
 
